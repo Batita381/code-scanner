@@ -20,6 +20,8 @@ allprojects {
         google()
 
         mavenCentral()
+
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -38,10 +40,11 @@ android {
     namespace = 'com.budiyev.android.codescanner'
 
     defaultConfig {
-        minSdk = 19
-        targetSdk = 35
-        compileSdk = 35
-        buildToolsVersion = '35.0.1'
+        minSdk = 23
+        //noinspection ExpiredTargetSdkVersion
+        targetSdk = 23
+        compileSdk = 23
+        buildToolsVersion = '23.0.3'
         versionCode = 61
         versionName = libraryVersion
         multiDexEnabled = true
@@ -66,13 +69,24 @@ android {
             withJavadocJar()
         }
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
+    implementation 'androidx.activity:activity-ktx:1.13.0'
+    implementation 'androidx.appcompat:appcompat:1.8.0'
+    implementation 'androidx.appcompat:appcompat:23'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.2'
+    implementation 'androidx.navigation:navigation-fragment:2.6.0'
+    implementation 'androidx.navigation:navigation-ui:2.6.0'
+    implementation 'com.google.android.material:material:1.14.0'
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
     api 'androidx.multidex:multidex:2.0.1'
     api 'com.google.zxing:core:3.3.3'
     api 'androidx.annotation:annotation:1.9.1'
+    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.0'
 }
 
 tasks.register('sourcesJar', Jar) {
